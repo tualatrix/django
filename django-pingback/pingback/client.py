@@ -105,7 +105,7 @@ def ping_external_links(content_attr=None,
 
         soup = BeautifulSoup(content)
         links = [a['href'] for a in soup.findAll('a')
-                 if ('href' in a) and is_external(a['href'], url)]
+                 if a.has_key('href') and is_external(a['href'], url)]
 
         log.debug('URL %s, pinging all these links: %r' % (url, links))
         pbt = PingBackThread(instance=instance, url=url, links=links)
